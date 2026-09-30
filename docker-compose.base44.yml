@@ -1,0 +1,20 @@
+services:
+  web:
+    image: nginx:alpine
+    # always, not on-failure: when the sandbox is put to sleep the container is
+    # stopped cleanly (exit 0), and an on-failure policy leaves it down until
+    # someone re-runs the start command by hand. always brings it back with the
+    # Docker daemon, so a woken sandbox serves the page on its own.
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app:ro
+      - ./nginx.base44.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx.base44.main.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/builder.html"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
