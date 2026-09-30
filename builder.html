@@ -307,7 +307,8 @@ footer{font-family:var(--mono);font-size:11px;color:var(--mut);margin-top:26px;b
       <a class="btn ghost" id="disc" href="https://wa.me/972545517210?text=Hi%20Roman%2C%20I%20built%20a%20site%20in%20your%20builder.%20Is%20there%20any%20discount%20you%20could%20offer%20me%3F" target="_blank" rel="noopener">Ask for a discount</a>
     </div>
     <!-- 15.09.2026: people install from the builder, so the notification button lives here
-         too. push.js (loaded by gv-chrome.js) fills this place in. -->
+         too. push.js (loaded by gv-chrome.js) fills this place in. Standalone, with no
+         chrome, it stays empty and the step below is unaffected. -->
     <div data-gv-push data-gv-push-class="btn ghost"></div>
     <p class="note" id="dlnote">Free file, no email asked. Open it in any browser, it works offline.</p>
   </div>
@@ -566,6 +567,8 @@ addEventListener('load',function(){
   if(typeof renderNow==='function'){var _r=renderNow;renderNow=function(){var v=_r.apply(this,arguments);if(window.gvT)setTimeout(gvT,0);return v;};}
 });</script>
 <script src="assistant.js?v=5" defer></script>
-<script src="/gv-chrome.js?v=17" defer></script>
+<!-- 30.09.2026: gv-chrome.js is the shared genvidpro.com chrome. It pulls /push.js,
+     /tts, /privacy.html, /terms.html and /work, none of which live in this repo.
+     The builder stands on its own without it, so it is not loaded here. -->
 </body>
 </html>
