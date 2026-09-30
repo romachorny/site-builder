@@ -6,6 +6,8 @@ A static single-page site builder. No build step, no dependencies:
 - `tpl-engine.js` — 88 KB template engine loaded by builder.html
 - `i18n.js` — translations for the builder UI; fully client-side, nothing to call
 - `assistant.js` — the on-page assistant widget
+- `media/tpl/` — the twelve template photographs the tiles show
+- `manifest.json` and the favicons — the page asked for them by absolute path and got 404s
 
 The shared genvidpro.com chrome (`gv-chrome.js`) is deliberately not loaded here: it depends
 on `/push.js`, `/tts`, `/privacy.html`, `/terms.html` and `/work`, which belong to the site
@@ -18,6 +20,11 @@ Served by `nginx:alpine` via `docker-compose.base44.yml`. The repo is bind-mount
 - `nginx.base44.conf` → mounted as `/etc/nginx/conf.d/default.conf` (serves `builder.html` as the index).
 
 No live-reload dev server (pure static files). After editing, call `reload_preview` so the user sees the change.
+
+`nginx.base44.conf` closes `/AGENTS.md`, `/README.md`, the compose file, its own config and
+`.base44/` — the whole repo is the web root here, so they were downloadable. It also answers
+404 for a missing file instead of falling back to `builder.html`: the fallback meant a missing
+photograph came back as 200 with the entire builder page in the body, which reads as working.
 
 ## Verifying it works
 ```sh
