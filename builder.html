@@ -26,7 +26,11 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--ink);color:var(--tx);font-family:var(--body);-webkit-font-smoothing:antialiased}
 .wrap{max-width:1600px;margin:0 auto;padding:28px 40px 64px}
-@media(max-width:760px){.wrap{padding:20px 16px 48px}}
+/* 02.10.2026, standalone copy: on genvidpro.com the site chrome bar holds the top of
+   the page and the globe and Share sit inside it. With no chrome they are pinned to
+   the top-right corner, and on a phone they landed on top of the kicker line. The
+   page starts below them instead. */
+@media(max-width:760px){.wrap{padding:58px 16px 48px}}
 header.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 24px;border-bottom:1px solid var(--line);padding-bottom:18px}
 .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
 h1{font-family:var(--disp);font-weight:800;font-size:clamp(38px,6vw,68px);line-height:.92;margin:6px 0 0;text-wrap:balance;letter-spacing:.01em}
